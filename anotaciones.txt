@@ -1,0 +1,8 @@
+COSAS POR HACER:
+    [x] Resolver Sudokus básicos
+    [ ] Resolver todo tipo de sudokus
+    [ ] Convertir todo a POO
+    [ ] Extensión de archivos .sdku
+    [ ] Marcado especial para .sdku
+    [ ] Rehacer el repositorio
+    [ ] Base de datos para guardar

@@ -1,3 +1,4 @@
+# Es la matriz en la que se almacena el sudoku
 GRID_INICIAL = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -10,6 +11,7 @@ GRID_INICIAL = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0]
 ]
 
+# Es la guía para ubicarse en el sudoku
 GUIDE = """/ 1 2 3 4 5 6 7 8 9
 A
 B
@@ -22,11 +24,13 @@ H
 I
 """
 
+# Imprime el sudoku un poco más lindo para que lo vea
 def imprimir(matriz):
     for i in range(9):
         print(matriz[i])
     print('\n')
 
+# Genera a partir de una cadena la matriz del sudoku
 def generate_sudoku(cadena):
     cadena = str(cadena)
     while len(cadena) != 81:
@@ -38,9 +42,11 @@ def generate_sudoku(cadena):
             GRID_INICIAL[i][j] = int(cadena[i*9+j])
     imprimir(GRID_INICIAL)
 
+# Crea un sudoku sacado de internet
 def make_from_i():
     pass
 
+# Crea un soduku a partir de una cadena continua de numeros
 def make_from_str():
     print('Ingrese una cadena de la configuración de su sudoku')
     print('los valores que desconozca marquelos con un 0, no utilice espacios')
@@ -49,24 +55,28 @@ def make_from_str():
     entrada = input('Ingrese su sudoku: ')
     generate_sudoku(entrada)
 
+# Sustituye cada valor nulo por una lista con todas las posibilidades
 def posibilities():
     for i in range(9):
         for j in range(9):
             if GRID_INICIAL[i][j] == 0:
                 GRID_INICIAL[i][j] = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
+# Elimina las posibilidades de las listas horizontalmente
 def solve_horizontal(value, i, j):
     for x in range(9):
         if type(GRID_INICIAL[i][x]) == type([]):
             if GRID_INICIAL[i][x].count(value) != 0:
                 GRID_INICIAL[i][x].remove(value)
 
+# Elimina las posibilidades de las listas verticalmente
 def solve_vertical(value, i, j):
     for y in range(9):
         if type(GRID_INICIAL[y][j]) == type([]):
             if GRID_INICIAL[y][j].count(value) != 0:
                 GRID_INICIAL[y][j].remove(value)
 
+# Elimina las posibilidades de las listas de cada cuadrante
 def solve_square(value, i, j):
     if 0<=i<3 and 0<=j<3:
         for x in range(0,3):
@@ -123,6 +133,7 @@ def solve_square(value, i, j):
                     if GRID_INICIAL[y][x].count(value) != 0:
                         GRID_INICIAL[y][x].remove(value)
 
+# Aplica cada una de las funciones solve_...
 def solve():
     for i in range(9):
         for j in range(9):
@@ -135,6 +146,7 @@ def solve():
             else:
                 pass
 
+# Sustituye por un entero una lista de posibilidades cuando solo hay una posibilidad
 def substitute():
     for i in range(9):
         for j in range(9):
@@ -146,6 +158,7 @@ def substitute():
             else:
                 pass
 
+# Dice si el sudoku ya está solucionado o aun no
 def is_solved():
     for i in range(9):
         for j in range(9):
@@ -153,6 +166,7 @@ def is_solved():
                 return False
     return True
 
+# Provisionalmente los valores que uso para testear el programa
 s1 = '005407000200065089603002704032058000806000003509043678300789040400536000007120806'
 generate_sudoku(s1)
 posibilities()
