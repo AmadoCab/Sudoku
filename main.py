@@ -1,5 +1,5 @@
 import Sudoku as s
-import findsudoku as fs
+import Searcher as fs
 
 #finder = fs.Cadena()
 
@@ -15,5 +15,6 @@ print('\n\n')
 puzzle.posibilities()
 puzzle.solve(10)
 s.imprimir(puzzle)
+print(puzzle.make_status())
 
 #

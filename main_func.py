@@ -167,11 +167,11 @@ def is_solved():
     return True
 
 # Provisionalmente los valores que uso para testear el programa
-s1 = '005407000200065089603002704032058000806000003509043678300789040400536000007120806'
+s1 = '006904080083000900504036007840050009960070058005680240300540806600208030000103792'
 generate_sudoku(s1)
 posibilities()
 
-for _ in range(3):
+for _ in range(4):
     solve()
 
 print(GUIDE)

@@ -65,6 +65,16 @@ class Sudoku:
                     cadena_prov += '·'
         self.cadena = cadena_prov
 
+    def make_status(self):
+        status_prov = ''
+        for i in range(9):
+            for j in range(9):
+                status_prov += str(self.grid_inicial[i][j])
+        return status_prov
+
+    def __continue(self):
+        return True
+
     def __substitute(self):
         for i in range(9):
             for j in range(9):
@@ -99,7 +109,9 @@ class Sudoku:
                                     self.grid_inicial[i][j].remove(value)
 
     def solve(self, iteraciones):
-        for _ in range(iteraciones):
+        run = True
+        while run:
+            estado_0 = self.make_status()
             for i in range(9):
                 for j in range(9):
                     if type(self.grid_inicial[i][j]) == type(6):
@@ -107,11 +119,16 @@ class Sudoku:
                         self.__solve_vertical(self.grid_inicial[i][j], i, j)
                         self.__solve_area(self.grid_inicial[i][j], i, j)
                         self.__substitute()
+            estado_f = self.make_status()
+            if estado_0 == estado_f:
+                run = False
+            else:
+                pass
 
 def imprimir(sudokuclase):
     sudokuclase.make_string()
     cadena = sudokuclase.cadena
-    if type(cadena) == type('2'):
+    if type(cadena) == type('Amado'):
         if len(cadena) != 81:
             raise Exception('LengthError: La longitud de la cadena debe ser de 81 caracteres')
         print(f"""\t┌ — — — ┬ — — — ┬ — — — ┐
