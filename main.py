@@ -15,6 +15,5 @@ print('\n\n')
 puzzle.posibilities()
 puzzle.solve(10)
 s.imprimir(puzzle)
-print(puzzle.make_status())
 
 #
