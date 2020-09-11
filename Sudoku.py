@@ -62,7 +62,7 @@ class Sudoku:
                 if type(self.grid_inicial[i][j]) == type(1):
                     cadena_prov += str(self.grid_inicial[i][j])
                 elif type(self.grid_inicial[i][j]) == type([]):
-                    cadena_prov += 'p'
+                    cadena_prov += '·'
         self.cadena = cadena_prov
 
     def __substitute(self):
@@ -88,8 +88,15 @@ class Sudoku:
                 if self.grid_inicial[j][y].count(value) != 0:
                     self.grid_inicial[j][y].remove(value)
 
-    def __solve_area(self):
-        pass
+    def __solve_area(self, value, x, y):
+        for equis in range(0, 9, 3):
+            for ye in range(0, 9, 3):
+                if (equis<=x<equis+3 and ye<=y<ye+3):
+                    for i in range(equis, equis+3):
+                        for j in range(ye, ye+3):
+                            if type(self.grid_inicial[i][j]) == type([]):
+                                if self.grid_inicial[i][j].count(value) != 0:
+                                    self.grid_inicial[i][j].remove(value)
 
     def solve(self, iteraciones):
         for _ in range(iteraciones):
@@ -98,7 +105,7 @@ class Sudoku:
                     if type(self.grid_inicial[i][j]) == type(6):
                         self.__solve_horizontal(self.grid_inicial[i][j], i, j)
                         self.__solve_vertical(self.grid_inicial[i][j], i, j)
-                        self.__solve_area()
+                        self.__solve_area(self.grid_inicial[i][j], i, j)
                         self.__substitute()
 
 def imprimir(sudokuclase):
