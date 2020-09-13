@@ -13,7 +13,7 @@ puzzle = s.Sudoku(cadena)
 s.imprimir(puzzle)
 print('\n\n')
 puzzle.posibilities()
-puzzle.solve(10)
+puzzle.solve()
 s.imprimir(puzzle)
 
 #

@@ -108,7 +108,7 @@ class Sudoku:
                                 if self.grid_inicial[i][j].count(value) != 0:
                                     self.grid_inicial[i][j].remove(value)
 
-    def solve(self, iteraciones):
+    def __solve_basic(self):
         run = True
         while run:
             estado_0 = self.make_status()
@@ -124,6 +124,9 @@ class Sudoku:
                 run = False
             else:
                 pass
+
+    def solve(self):
+        self.__solve_basic()
 
 def imprimir(sudokuclase):
     sudokuclase.make_string()
@@ -154,7 +157,7 @@ if __name__ == "__main__":
     imprimir(sudoku)
     print('\n\n')
     sudoku.posibilities()
-    sudoku.solve(10)
+    sudoku.solve()
     imprimir(sudoku)
 
 #
