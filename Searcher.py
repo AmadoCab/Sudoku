@@ -1,12 +1,20 @@
 #from bs4 import BeautifulSoup
 import requests
 import json
+import os
 
 # API's to use
 #
 # utep
 
 class Cadena:
+    def __init__(self):
+        for i in os.listdir():
+            if i == 'Guardados':
+                return None
+        os.mkdir('Guardados')
+        return None
+
     def utep_api(self, level):
         source = requests.get(f'http://www.cs.utep.edu/cheon/ws/sudoku/new/?size=9&level={level}').text
         answer = json.loads(source)
@@ -21,6 +29,10 @@ class Cadena:
             for j in range(9):
                 str_prov += str(list_prov[i][j])
         return str_prov
+    
+    def local_charge(self, number):
+        source = f'Guardados/{number}.sdku'
+        
 
 if __name__ == "__main__":
     sudoku1 = Cadena()

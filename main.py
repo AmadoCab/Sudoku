@@ -1,7 +1,7 @@
 import Sudoku as s
 import Searcher as fs
 
-#finder = fs.Cadena()
+finder = fs.Cadena()
 
 #cadena = finder.utep_api(1)
 
